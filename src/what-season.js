@@ -18,6 +18,8 @@ import { NotImplementedError } from '../extensions/index.js';
 
 export default function getSeason(date) {
 
+  if (date === undefined) return 'Unable to determine the time of year!';
+
   const arr = String(date).split(' ');
 
 if (arr[1] == 'Feb' || arr[1] == 'Jan' || arr[1] == 'Dec') {
