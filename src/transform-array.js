@@ -13,23 +13,14 @@ import { NotImplementedError } from '../extensions/index.js';
  * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
  * 
  */
-//  transform([1, 2, 3, '--double-next', 4, 5])
-//  // [1, 2, 3, 4, 4, 5]
-//  transform([1, 2, 3, '--discard-prev', 4, 5])
-//  // [1, 2, 4, 5]
-//  transform([1, 2, 3, '--double-prev', 4, 5])
-//  // [1, 2, 3, 3, 4, 5]
-//  transform([1, 2, 3, '--discard-next', 4, 5])
-//  // [1, 2, 3, 5]
-
-transform([1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5])
-transform([1, 2, 3, '--double-next', 1337, '--double-prev', 4, 5])
-transform([1, 2, 3, '--double-next'])
-transform([1, 2, 3, '--discard-next'])
 
 export default function transform(arr) {
 
-let newArr = arr.concat() ;
+let newArr = arr.concat()
+
+if (!Array.isArray(arr)) {
+  return '\'arr\' parameter must be an instance of the Array!'
+  }
 
 if (newArr.includes('--double-prev')) {
   if (newArr.indexOf('--double-prev') == 0) {
@@ -62,10 +53,6 @@ if (newArr.includes('--discard-next')) {
 }
 
 
-if (!Array.isArray(arr)) {
-  return '\'arr\' parameter must be an instance of the Array!'
-  }
-
 // for (let i = 0; i < arr.length; i++) {
   
 // if (arr[i] == '--double-next') {
@@ -80,7 +67,6 @@ if (!Array.isArray(arr)) {
 //   newArr.push(arr[i])
 // }
 // }
-
 
 return newArr;
 

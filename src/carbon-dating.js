@@ -20,11 +20,8 @@ const HALF_LIFE_PERIOD = 5730;
  *
  */
 export default function dateSample(sampleActivity) {
-  if (typeof (sampleActivity) !== 'string') { isNaN(parseFloat(sampleActivity) || (!isNaN(sampleActivity) && (+sampleActivity <= 0 || +sampleActivity > 15)))
-     {
-      return false
-    }
+  if (typeof(sampleActivity) !== "string" || isNaN(parseFloat(sampleActivity)) || parseFloat(sampleActivity) <= 0 || parseFloat(sampleActivity) >= 15) {
+    return false;
   }
-  let res = Math.ceil(Math.log(MODERN_ACTIVITY / parseFloat(sampleActivity)) / (LN2 / HALF_LIFE_PERIOD))
-  return res
+  return Math.ceil(Math.log(MODERN_ACTIVITY/parseFloat(sampleActivity))*HALF_LIFE_PERIOD/Math.LN2);
   }
